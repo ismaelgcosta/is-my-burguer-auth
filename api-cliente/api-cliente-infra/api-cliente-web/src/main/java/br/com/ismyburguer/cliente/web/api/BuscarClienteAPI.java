@@ -8,6 +8,7 @@ import br.com.ismyburguer.core.adapter.in.WebAdapter;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.hibernate.validator.constraints.UUID;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,7 +40,7 @@ public class BuscarClienteAPI {
 
     @Operation(security = @SecurityRequirement(name = "Bearer Authentication"), method = "Consultar Cliente por Email", description = "Consultar Cliente por Email")
     @GetMapping("/{clienteId}")
-    public BuscarClienteResponse obterClientePorId(@PathVariable(name = "clienteId") String clienteId) {
+    public BuscarClienteResponse obterClientePorId(@PathVariable(name = "clienteId") @UUID String clienteId) {
         return buscarClienteConverter.convert(consultarClienteUseCase.buscarPorId(new ConsultarClienteUseCase.ConsultaClientePorId(clienteId)));
     }
 

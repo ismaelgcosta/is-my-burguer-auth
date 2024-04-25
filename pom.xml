@@ -6,12 +6,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.4</version>
+        <version>3.1.5</version>
     </parent>
 
     <groupId>br.com.ismyburguer</groupId>
     <artifactId>api-auth</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>api-auth</name>
     <description>Is My Burguer API Auth</description>
@@ -20,8 +20,8 @@
         <module>api-common-entity</module>
         <module>api-infra</module>
         <module>api-infra-oauth</module>
-        <module>api-infra-persistence</module>
         <module>api-infra-web</module>
+        <module>api-infra-persistence</module>
         <module>api-main-build</module>
         <module>api-cliente</module>
     </modules>
@@ -31,6 +31,18 @@
         <maven.compiler.target>20</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>2022.0.2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
 

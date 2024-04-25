@@ -1,0 +1,16 @@
+services:
+  is-my-burguer-auth:
+    container_name: is-my-burguer-auth
+    image: docker.io/ismaelgcosta/is-my-burguer-auth:is-my-burguer-auth-2.0
+    build:
+        dockerfile: Dockerfile
+    ports:
+      - '127.0.0.1:8943:8943'
+    restart: unless-stopped
+    networks:
+      - ismyburguer-backend
+
+networks:
+  ismyburguer-backend:
+    external: false
+    driver: bridge
