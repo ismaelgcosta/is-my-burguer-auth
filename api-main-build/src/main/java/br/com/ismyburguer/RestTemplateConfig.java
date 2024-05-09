@@ -31,7 +31,6 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 
 @Configuration
-
 public class RestTemplateConfig {
 
     @Value("eureka.client.serviceUrl.defaultZone")
@@ -54,12 +53,6 @@ public class RestTemplateConfig {
         return args;
     }
 
-//
-//    @Bean
-//    public EurekaClient redirectingEurekaHttpClient() throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
-//        return new RedirectingEurekaHttpClient(serviceUrl);
-//    }
-
     @Bean
     public RestTemplate restTemplate() throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
         CloseableHttpClient httpclient = HttpClients.custom()
@@ -77,7 +70,6 @@ public class RestTemplateConfig {
                 new HttpComponentsClientHttpRequestFactory();
 
         requestFactory.setHttpClient(httpclient);
-        RestTemplate restTemplate = new RestTemplate(requestFactory);
-        return restTemplate;
+        return new RestTemplate(requestFactory);
     }
 }

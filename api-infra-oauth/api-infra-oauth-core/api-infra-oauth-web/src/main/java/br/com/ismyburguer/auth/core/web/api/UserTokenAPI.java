@@ -22,7 +22,7 @@ public class UserTokenAPI {
         this.useCase = useCase;
     }
 
-    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"), method = "Gerar Token", description = "Gerar Token")
+    @Operation(security = @SecurityRequirement(name = "Bearer-Authentication"), method = "Gerar Token", description = "Gerar Token")
     @PostMapping("/token")
     public UserToken login(@Valid @RequestBody Login request) {
         return useCase.login(request.getUsername(), request.getPassword());

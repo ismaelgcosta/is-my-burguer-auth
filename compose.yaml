@@ -1,9 +1,21 @@
 services:
   is-my-burguer-auth:
     container_name: is-my-burguer-auth
-    image: docker.io/ismaelgcosta/is-my-burguer-auth:is-my-burguer-auth-2.0
+    image: docker.io/ismaelgcosta/is-my-burguer-auth:is-my-burguer-auth-2.2.0
     build:
         dockerfile: Dockerfile
+    environment:
+      - CLIENT_CREDENTIALS_ID
+      - CLIENT_CREDENTIALS_SECRET
+      - SERVICE_DISCOVERY_USERNAME
+      - SERVICE_DISCOVERY_PASSWORD
+      - MONGODB_HOST
+      - MONGODB_PASSWORD
+      - MONGODB_USER
+      - CLIENT_DOMAIN
+      - AWS_REGION
+      - AWS_API_GATEWAY_ID
+      - AWS_COGNITO_USER_POOL_ID
     ports:
       - '127.0.0.1:8943:8943'
     restart: unless-stopped

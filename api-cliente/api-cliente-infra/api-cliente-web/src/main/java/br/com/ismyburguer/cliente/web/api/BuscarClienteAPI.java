@@ -26,19 +26,25 @@ public class BuscarClienteAPI {
         this.buscarClienteConverter = buscarClienteConverter;
     }
 
-    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"), method = "Consultar Cliente por Email", description = "Consultar Cliente por Email")
+    @Operation(security = @SecurityRequirement(name = "Bearer-Authentication"), method = "Consultar Cliente por Email", description = "Consultar Cliente por Email")
     @GetMapping("/email/{email}")
     public BuscarClienteResponse obterCliente(@PathVariable(name = "email") String email) {
         return buscarClienteConverter.convert(consultarClienteUseCase.buscar(new ConsultarClienteUseCase.ConsultaCliente(email)));
     }
 
-    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"), method = "Consultar Cliente por CPF", description = "Consultar Cliente por Email")
+    @Operation(security = @SecurityRequirement(name = "Bearer-Authentication"), method = "Consultar Cliente por CPF", description = "Consultar Cliente por Email")
     @GetMapping("/cpf/{cpf}")
     public BuscarClienteResponse obterClientePorCpf(@PathVariable(name = "cpf") String cpf) {
         return buscarClienteConverter.convert(consultarClienteUseCase.buscarPorCpf(new ConsultarClienteUseCase.ConsultaClientePorCpf(cpf)));
     }
 
-    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"), method = "Consultar Cliente por Email", description = "Consultar Cliente por Email")
+    @Operation(security = @SecurityRequirement(name = "Bearer-Authentication"), method = "Consultar Cliente por Username", description = "Consultar Cliente por Username")
+    @GetMapping("/username/{username}")
+    public BuscarClienteResponse obterClientePorUsername(@PathVariable(name = "username") String username) {
+        return buscarClienteConverter.convert(consultarClienteUseCase.buscarPorUsername(new ConsultarClienteUseCase.ConsultaClientePorUsername(username)));
+    }
+
+    @Operation(security = @SecurityRequirement(name = "Bearer-Authentication"), method = "Consultar Cliente por Email", description = "Consultar Cliente por Email")
     @GetMapping("/{clienteId}")
     public BuscarClienteResponse obterClientePorId(@PathVariable(name = "clienteId") @UUID String clienteId) {
         return buscarClienteConverter.convert(consultarClienteUseCase.buscarPorId(new ConsultarClienteUseCase.ConsultaClientePorId(clienteId)));

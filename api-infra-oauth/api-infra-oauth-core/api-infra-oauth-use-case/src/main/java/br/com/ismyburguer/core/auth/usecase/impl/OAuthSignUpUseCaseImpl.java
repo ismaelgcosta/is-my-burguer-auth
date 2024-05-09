@@ -6,6 +6,7 @@ import br.com.ismyburguer.core.auth.gateway.out.LambdaOAuthSignUp;
 import br.com.ismyburguer.core.auth.gateway.out.request.SignUpRequest;
 import br.com.ismyburguer.core.auth.usecase.impl.client.ApiGatewayFeignClient;
 import br.com.ismyburguer.core.usecase.UseCase;
+import jakarta.annotation.PostConstruct;
 
 import java.util.Map;
 
@@ -15,6 +16,12 @@ public class OAuthSignUpUseCaseImpl implements OAuthSignUpUseCase {
 
     public OAuthSignUpUseCaseImpl(ApiGatewayFeignClient client) {
         this.client = client;
+    }
+
+    @PostConstruct
+    public void initLambda() {
+        // quando a lambda é criada ela ainda não está no cache da amazon e
+
     }
 
     @Override

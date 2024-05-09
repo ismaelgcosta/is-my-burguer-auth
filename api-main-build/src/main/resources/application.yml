@@ -53,7 +53,7 @@ spring:
     name: is-my-burguer-auth
   data:
     mongodb:
-      uri: mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_HOST}/is-my-burguer?retryWrites=true&w=majority&appName=is-my-burguer-mongodb
+      uri: mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_HOST}/is-my-burguer-auth?retryWrites=true&w=majority&appName=is-my-burguer-mongodb
 
   security:
     oauth2:
@@ -77,18 +77,13 @@ spring:
             jwk-set-uri: https://cognito-idp.${aws.region}.amazonaws.com/${aws.cognito.user-pool-id}/.well-known/jwks.json
             issuer-uri: https://cognito-idp.${aws.region}.amazonaws.com/${aws.cognito.user-pool-id}
 
-  # Quartz
-  quartz:
-    job-store-type: jdbc
-    jdbc:
-      initialize-schema: true
-
 info:
   app:
     name: ${spring.application.name}
 
 eureka:
   instance:
+    hostname: ${spring.cloud.client.hostname}
     secure-port: ${server.port}
     secure-port-enabled: true
     non-secure-port-enabled: false
@@ -103,7 +98,7 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: https://a95e78fc7525840e0bf8fb564ab94d68-1177709164.us-east-1.elb.amazonaws.com/eureka
+      defaultZone: https://${SERVICE_DISCOVERY_USERNAME}:${SERVICE_DISCOVERY_PASSWORD}@localhost/eureka
     healthcheck:
       enabled: true
     tls:

@@ -21,7 +21,7 @@ public class ConfirmSignUpAPI {
         this.confirmSignUpUseCase = confirmSignUpUseCase;
     }
 
-    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"), method = "Confirmar Cadastro de Usuário", description = "Confirmar Cadastro de Usuário")
+    @Operation(security = @SecurityRequirement(name = "Bearer-Authentication"), method = "Confirmar Cadastro de Usuário", description = "Confirmar Cadastro de Usuário")
     @PostMapping("/sign-up/confirm")
     public void login(@Valid @RequestBody ConfirmarCadastroRequest request) {
         confirmSignUpUseCase.confirmarNovoUsuario(

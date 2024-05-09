@@ -22,7 +22,7 @@ public class UserInfoAPI {
         this.userInfoUseCase = userInfoUseCase;
     }
 
-    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"), method = "Informações do Usuário Autenticado", description = "Informações do Usuário Autenticado")
+    @Operation(security = @SecurityRequirement(name = "Bearer-Authentication"), method = "Informações do Usuário Autenticado", description = "Informações do Usuário Autenticado")
     @PostMapping("/info")
     public UserInfoEntity userInfo() {
         UserInfo userInfoResponse = userInfoUseCase.userInfo(((Jwt) SecurityContextHolder.getContext().getAuthentication().getCredentials()).getTokenValue());

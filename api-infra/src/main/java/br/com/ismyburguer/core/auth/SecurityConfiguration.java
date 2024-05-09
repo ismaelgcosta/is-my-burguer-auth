@@ -35,7 +35,7 @@ public class SecurityConfiguration {
                                     "/swagger-ui*/*swagger-initializer.js",
                                     "/swagger-ui*/**")
                             .permitAll();
-                    authz.requestMatchers("/**").permitAll();
+                    authz.requestMatchers("/**").authenticated();
                 })
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
 			    .oauth2Client(Customizer.withDefaults())

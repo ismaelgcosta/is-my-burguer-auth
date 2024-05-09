@@ -1,8 +1,7 @@
 resource "kubectl_manifest" "is-my-burguer-auth-deployment" {
   depends_on = [
     data.aws_eks_cluster.cluster,
-    kubernetes_secret.is-my-burguer-auth-db,
-    kubernetes_secret.is-my-burguer-cognito
+    kubernetes_secret.is-my-burguer-auth-db
   ]
   yaml_body = <<YAML
 apiVersion: apps/v1
@@ -77,6 +76,16 @@ spec:
                 secretKeyRef:
                   name: is-my-burguer-cognito
                   key: api-gateway
+            - name: SERVICE_DISCOVERY_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: is-my-burguer-sd
+                  key: username
+            - name: SERVICE_DISCOVERY_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: is-my-burguer-sd
+                  key: password
           image: docker.io/ismaelgcosta/is-my-burguer-auth:${var.TF_VAR_IMAGE_VERSION}
           ports:
             - containerPort: 8943
@@ -84,7 +93,6 @@ spec:
 status: {}
 YAML
 }
-
 
 resource "kubectl_manifest" "is-my-burguer-auth-svc" {
   depends_on = [
@@ -126,8 +134,8 @@ spec:
     kind: Deployment
     name: is-my-burguer-auth
     namespace: is-my-burguer
-  minReplicas: 2
-  maxReplicas: 4
+  minReplicas: 1
+  maxReplicas: 2
   behavior:
     scaleDown:
       stabilizationWindowSeconds: 0 # para forçar o kubernets a zerar a janela de tempo e escalar imediatamente
@@ -139,11 +147,11 @@ spec:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 1 # para forçar o kubernets escalar com 1% de cpu
+        averageUtilization: 10 # para forçar o kubernets escalar com 1% de cpu
 status:
   observedGeneration: 0
   lastScaleTime:
-  currentReplicas: 0
+  currentReplicas: 1
   desiredReplicas: 2
   currentMetrics:
   - type: Resource
@@ -151,7 +159,6 @@ status:
       name: cpu
 YAML
 }
-
 
 resource "kubernetes_secret" "is-my-burguer-auth-db" {
   metadata {
@@ -162,35 +169,11 @@ resource "kubernetes_secret" "is-my-burguer-auth-db" {
   immutable = false
 
   data = {
-    host = "${var.TF_VAR_MONGODB_HOST}",
-    username = "${var.TF_VAR_MONGODB_USERNAME}",
-    password = "${var.TF_VAR_MONGODB_PASSWORD}"
+    host = "${data.terraform_remote_state.is-my-burguer-db.outputs.mongodb_endpoint_host}",
+    username = "${var.TF_VAR_MONGODB_AUTH_USERNAME}",
+    password = "${var.TF_VAR_MONGODB_AUTH_PASSWORD}"
   }
 
   type = "kubernetes.io/basic-auth"
 
 }
-
-resource "kubernetes_secret" "is-my-burguer-cognito" {
-
-  metadata {
-    name      = "is-my-burguer-cognito"
-    namespace = "is-my-burguer"
-  }
-
-  immutable = false
-
-  data = {
-    user-pool-id= "${data.aws_cognito_user_pool_client.is-my-burguer-auth-client.user_pool_id}"
-    api-gateway= "${data.terraform_remote_state.is-my-burguer-cognito.outputs.api_gateway_domain}"
-    cognito_domain= "${data.terraform_remote_state.is-my-burguer-cognito.outputs.cognito_domain}"
-    username = "${data.terraform_remote_state.is-my-burguer-cognito.outputs.is-my-burguer-api-client-id}",
-    password = "${data.aws_cognito_user_pool_client.is-my-burguer-auth-client.client_secret}"
-  }
-
-  type = "kubernetes.io/basic-auth"
-
-}
-
-
-

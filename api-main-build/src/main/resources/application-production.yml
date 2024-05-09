@@ -53,7 +53,7 @@ spring:
     name: is-my-burguer-auth
   data:
     mongodb:
-      uri: mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_HOST}/is-my-burguer?retryWrites=true&w=majority&appName=is-my-burguer-mongodb
+      uri: mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_HOST}/is-my-burguer-auth?retryWrites=true&w=majority&appName=is-my-burguer-mongodb
 
   security:
     oauth2:
@@ -92,7 +92,7 @@ eureka:
     home-page-url-path: https://${eureka.instance.hostname}:${server.port}/${server.servlet.context-path}/
     status-page-url-path: https://${eureka.instance.hostname}:${server.port}/${server.servlet.context-path}/info
     health-check-url: https://${eureka.instance.hostname}:${server.port}/${server.servlet.context-path}/health
-    lease-renewal-interval-in-seconds: 30
+    lease-renewal-interval-in-seconds: 15
 
   client:
     secure-port-enabled: true
@@ -100,7 +100,7 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: https://is-my-burguer-sd-lb/eureka
+      defaultZone: https://${SERVICE_DISCOVERY_USERNAME}:${SERVICE_DISCOVERY_PASSWORD}@is-my-burguer-sd-lb/eureka
     healthcheck:
       enabled: true
     tls:

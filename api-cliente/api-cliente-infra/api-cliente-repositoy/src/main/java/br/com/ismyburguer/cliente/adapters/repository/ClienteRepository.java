@@ -2,9 +2,6 @@ package br.com.ismyburguer.cliente.adapters.repository;
 
 import br.com.ismyburguer.cliente.adapters.model.ClienteModel;
 import br.com.ismyburguer.core.adapter.out.PersistenceDriver;
-import org.apache.el.stream.Stream;
-import org.bson.types.ObjectId;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;

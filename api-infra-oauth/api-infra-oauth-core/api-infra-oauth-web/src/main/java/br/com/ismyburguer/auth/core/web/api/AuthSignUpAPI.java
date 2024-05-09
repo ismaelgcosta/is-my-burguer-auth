@@ -28,7 +28,7 @@ public class AuthSignUpAPI {
         this.useCase = useCase;
     }
 
-    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"), method = "Cadastrar Usuário", description = "Cadastrar Usuário")
+    @Operation(security = @SecurityRequirement(name = "Bearer-Authentication"), method = "Cadastrar Usuário", description = "Cadastrar Usuário")
     @PostMapping("/sign-up")
     public User login(@Valid @RequestBody UserSignUpRequest request) {
         return buscarClienteAuthConverter.convert(useCase.cadastrarNovoUsuario(converter.convert(request), request.getPassword()));
