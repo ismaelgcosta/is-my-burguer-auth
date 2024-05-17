@@ -3,7 +3,9 @@ package br.com.ismyburguer.cliente.adapters.model;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -18,6 +20,8 @@ import java.util.UUID;
 @Getter
 @Setter
 @Document(collection = "clientes")
+@NoArgsConstructor
+@EqualsAndHashCode(of = "clienteId")
 public class ClienteModel {
 
     @Id
@@ -44,16 +48,6 @@ public class ClienteModel {
     @Size(min = 3, message = "O username deve conter pelo menos 3 letras")
     private String username;
 
-    public ClienteModel() {
-    }
-
-    public ClienteModel(String nome, String sobrenome, String email, String cpf) {
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.email = email;
-        this.cpf = cpf;
-    }
-
     public ClienteModel(String nome, String sobrenome, String email, String cpf, String username) {
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -66,17 +60,4 @@ public class ClienteModel {
         return Optional.ofNullable(cpf);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (!(o instanceof ClienteModel that)) return false;
-
-        return new EqualsBuilder().append(getClienteId(), that.getClienteId()).isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(getClienteId()).toHashCode();
-    }
 }

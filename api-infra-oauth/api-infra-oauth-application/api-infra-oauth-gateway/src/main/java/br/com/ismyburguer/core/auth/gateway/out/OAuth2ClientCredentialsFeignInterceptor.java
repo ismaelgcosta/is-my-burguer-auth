@@ -8,12 +8,14 @@ import feign.RequestTemplate;
 import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.text.MessageFormat;
 import java.util.Map;
 
 @Component
+@Profile(value = {"dev", "production"})
 public class OAuth2ClientCredentialsFeignInterceptor implements OAuth2ClientCredentialsFeignInterceptorAPI {
 
     @Value("${aws.api-gateway}")

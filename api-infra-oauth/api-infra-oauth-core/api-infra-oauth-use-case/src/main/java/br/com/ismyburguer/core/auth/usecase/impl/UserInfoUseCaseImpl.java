@@ -7,6 +7,7 @@ import br.com.ismyburguer.core.usecase.UseCase;
 import feign.Feign;
 import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.text.MessageFormat;
@@ -17,6 +18,7 @@ public class UserInfoUseCaseImpl implements UserInfoUseCase {
     private static final String BEARER_TOKEN = "Bearer {0}";
 
     @Value("${aws.api-gateway}")
+    @Setter
     private String apiGateway;
 
     public UserInfo userInfo(String accessToken) {

@@ -25,6 +25,7 @@ public class Cliente implements Validation {
     private Email email;
 
     @Valid
+    @Setter
     private CPF cpf;
 
     @Valid

@@ -38,7 +38,7 @@ server:
     key-store-type: pkcs12
     key-alias: springboot
     key-password: password
-  port: 8943
+  port: 8080
 aws:
   api-gateway: https://${AWS_API_GATEWAY_ID}.execute-api.${AWS_REGION}.amazonaws.com
   region: ${AWS_REGION}
@@ -49,6 +49,9 @@ aws:
     user-pool-id: ${AWS_COGNITO_USER_POOL_ID}
 
 spring:
+  profiles:
+    active: dev
+
   application:
     name: is-my-burguer-auth
   data:

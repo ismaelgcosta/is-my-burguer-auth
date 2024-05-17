@@ -32,8 +32,10 @@ public class UserSignUpUseCaseImpl implements UserSignUpUseCase {
         Cliente.Nome nome = cliente.getNome();
         String username = generateUsername(nome);
 
-        while (consultarClienteUseCase.existsByUsername(username)) {
+        int tentativa = 1;
+        while (consultarClienteUseCase.existsByUsername(username) && tentativa < 5) {
             username = generateUsername(nome);
+            tentativa++;
         }
 
         cliente.setUsername(new Cliente.Username(username));
