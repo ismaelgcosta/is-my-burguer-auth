@@ -1,7 +1,5 @@
 package br.com.ismyburguer.core.auth.usecase.impl.client;
 
-import br.com.ismyburguer.core.adapter.out.FeignClientAPI;
-import br.com.ismyburguer.core.adapter.out.OAuth2ClientCredentialsFeignInterceptorAPI;
 import br.com.ismyburguer.core.auth.gateway.out.LambdaClientOAuthSignIn;
 import br.com.ismyburguer.core.auth.gateway.out.LambdaOAuthSignUp;
 import br.com.ismyburguer.core.auth.gateway.out.OAuth2ClientCredentialsFeignInterceptor;
@@ -27,8 +25,7 @@ public class ApiGatewayFeignClientTest {
 
     @BeforeEach
     public void setUp() {
-        apiGatewayFeignClient = new ApiGatewayFeignClient(interceptor);
-        ReflectionTestUtils.setField(apiGatewayFeignClient, "apiGateway", "http://example.com");
+        apiGatewayFeignClient.setApiGateway("http://example.com");
     }
 
     @Test
