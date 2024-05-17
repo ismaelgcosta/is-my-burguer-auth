@@ -1,13 +1,12 @@
 package br.com.ismyburguer.core.auth.usecase.impl.client;
 
-import br.com.ismyburguer.core.adapter.out.FeignClientAPI;
 import br.com.ismyburguer.core.auth.gateway.out.LambdaClientOAuthSignIn;
 import br.com.ismyburguer.core.auth.gateway.out.LambdaOAuthSignUp;
 import br.com.ismyburguer.core.auth.gateway.out.OAuth2ClientCredentialsFeignInterceptor;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.parallel.Isolated;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -16,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.verifyNoInteractions;
 
 @ExtendWith(MockitoExtension.class)
+@Isolated
 public class ApiGatewayFeignClientTest {
 
     @InjectMocks
