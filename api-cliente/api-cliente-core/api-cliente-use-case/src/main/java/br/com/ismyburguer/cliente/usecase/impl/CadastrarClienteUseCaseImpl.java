@@ -7,6 +7,7 @@ import br.com.ismyburguer.cliente.gateway.out.ConsultarClienteRepository;
 import br.com.ismyburguer.core.exception.BusinessException;
 import br.com.ismyburguer.core.usecase.UseCase;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
@@ -25,8 +26,9 @@ public class CadastrarClienteUseCaseImpl implements CadastrarClienteUseCase {
     @Override
     public UUID cadastrar(Cliente cliente) {
 
-        if (cliente.getUsername().isPresent() &&
-                consultarClienteRepository.existsByUsername(cliente.getUsername().get().getUsername())) {
+        Optional<Cliente.Username> username = cliente.getUsername();
+        if (username.isPresent() &&
+                consultarClienteRepository.existsByUsername(username.get().getUsername())) {
             throw new BusinessException("O username informado já existe");
         }
 
@@ -39,9 +41,10 @@ public class CadastrarClienteUseCaseImpl implements CadastrarClienteUseCase {
             throw new BusinessException("O e-mail informado já existe");
         }
 
-        if (cliente.getCpf().isPresent() &&
-                isNotBlank(cliente.getCpf().get().getNumero()) &&
-                consultarClienteRepository.obterPeloCpf(cliente.getCpf().get().getNumero())
+        Optional<Cliente.CPF> cpf = cliente.getCpf();
+        if (cpf.isPresent() &&
+                isNotBlank(cpf.get().getNumero()) &&
+                consultarClienteRepository.obterPeloCpf(cpf.get().getNumero())
                         .filter(cli -> !cli.getClienteId().equals(cliente.getClienteId()))
                         .isPresent()
         ) {
