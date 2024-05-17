@@ -44,8 +44,8 @@ public class FeignClientAPIUnitTest {
 
     @AfterAll
     static void tearDown() {
-        feignMockedStatic.reset();
-        sslContextBuilderMockedStatic.reset();
+        feignMockedStatic.close();
+        sslContextBuilderMockedStatic.close();
     }
 
     @Test
