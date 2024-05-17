@@ -9,6 +9,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Isolated;
 import org.mockito.Mock;
 import org.mockito.MockedStatic;
 
@@ -19,6 +20,7 @@ import java.security.NoSuchAlgorithmException;
 
 import static org.mockito.Mockito.*;
 
+@Isolated
 public class ApiGatewayFeignClientTest {
 
     private static MockedStatic<Feign> feignMockedStatic;
