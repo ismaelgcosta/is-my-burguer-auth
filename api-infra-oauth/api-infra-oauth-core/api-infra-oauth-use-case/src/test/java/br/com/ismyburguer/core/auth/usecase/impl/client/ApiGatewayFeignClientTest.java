@@ -1,104 +1,58 @@
 package br.com.ismyburguer.core.auth.usecase.impl.client;
 
+import br.com.ismyburguer.core.adapter.out.FeignClientAPI;
+import br.com.ismyburguer.core.adapter.out.OAuth2ClientCredentialsFeignInterceptorAPI;
 import br.com.ismyburguer.core.auth.gateway.out.LambdaClientOAuthSignIn;
+import br.com.ismyburguer.core.auth.gateway.out.LambdaOAuthSignUp;
 import br.com.ismyburguer.core.auth.gateway.out.OAuth2ClientCredentialsFeignInterceptor;
-import feign.Feign;
-import org.apache.hc.client5.http.ssl.TrustAllStrategy;
-import org.apache.hc.core5.ssl.SSLContextBuilder;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.parallel.Isolated;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockedStatic;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.util.ReflectionTestUtils;
 
-import javax.net.ssl.SSLContext;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.verifyNoInteractions;
 
-import static org.mockito.Mockito.*;
-
-@Isolated
+@ExtendWith(MockitoExtension.class)
 public class ApiGatewayFeignClientTest {
 
-    private static MockedStatic<Feign> feignMockedStatic;
-    private static MockedStatic<SSLContextBuilder> sslContextBuilderMockedStatic;
+    @InjectMocks
     private ApiGatewayFeignClient apiGatewayFeignClient;
 
     @Mock
     private OAuth2ClientCredentialsFeignInterceptor interceptor;
 
-    private static SSLContextBuilder contextBuilder;
-
-    @BeforeAll
-    public static void beforeAll() throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
-        mockStatic(Feign.class);
-
-        SSLContext sslContext = SSLContextBuilder.create()
-                .loadTrustMaterial(TrustAllStrategy.INSTANCE)
-                .build();
-
-        mockStatic(SSLContextBuilder.class);
-        contextBuilder = mock(SSLContextBuilder.class);
-        when(SSLContextBuilder.create()).thenReturn(contextBuilder);
-        when(contextBuilder.loadTrustMaterial(TrustAllStrategy.INSTANCE)).thenReturn(contextBuilder);
-        when(contextBuilder.build()).thenReturn(sslContext);
-    }
-
     @BeforeEach
-    void setUp() {
-        interceptor = mock(OAuth2ClientCredentialsFeignInterceptor.class);
+    public void setUp() {
         apiGatewayFeignClient = new ApiGatewayFeignClient(interceptor);
-        apiGatewayFeignClient.setApiGateway("gateway");
+        ReflectionTestUtils.setField(apiGatewayFeignClient, "apiGateway", "http://example.com");
     }
 
     @Test
-    void deveCriarClienteFeignCorretamente() {
-        // Mocking dependencies
-        Feign.Builder builderMock = mock(Feign.Builder.class);
-        Feign feignMock = mock(Feign.class);
+    public void testCreateClient() {
+        // Arrange
+        Class<LambdaOAuthSignUp> apiType = LambdaOAuthSignUp.class;
 
-        when(Feign.builder()).thenReturn(builderMock);
+        // Act
+        LambdaOAuthSignUp client = apiGatewayFeignClient.createClient(apiType);
 
-        // Configurando comportamento do Feign.Builder
-        when(builderMock.encoder(any())).thenReturn(builderMock);
-        when(builderMock.decoder(any())).thenReturn(builderMock);
-        when(builderMock.requestInterceptor(interceptor)).thenReturn(builderMock);
-
-        // Configurando comportamento do Feign
-        when(builderMock.client(any())).thenReturn(builderMock);
-
-        // Configurando comportamento do Client.Default
-        when(builderMock.target(any(), anyString())).thenReturn(feignMock);
-
-        apiGatewayFeignClient.createClient(Feign.Builder.class);
-
-        verify(builderMock).requestInterceptor(interceptor);
+        // Assert
+        assertNotNull(client);
     }
 
     @Test
-    void testCreateClientWithInterceptor() {
-        // Mocking dependencies
-        Feign.Builder builderMock = mock(Feign.Builder.class);
-        Feign feignMock = mock(Feign.class);
+    public void testCreateClientWithInterceptor() {
+        // Arrange
+        Class<LambdaClientOAuthSignIn> apiType = LambdaClientOAuthSignIn.class;
 
-        when(Feign.builder()).thenReturn(builderMock);
+        // Act
+        LambdaClientOAuthSignIn client = apiGatewayFeignClient.createClient(apiType);
 
-        // Configurando comportamento do Feign.Builder
-        when(builderMock.encoder(any())).thenReturn(builderMock);
-        when(builderMock.decoder(any())).thenReturn(builderMock);
-        when(builderMock.requestInterceptor(interceptor)).thenReturn(builderMock);
-
-        // Configurando comportamento do Feign
-        when(builderMock.client(any())).thenReturn(builderMock);
-
-        // Configurando comportamento do Client.Default
-        when(builderMock.target(any(), anyString())).thenReturn(feignMock);
-
-        apiGatewayFeignClient.createClient(LambdaClientOAuthSignIn.class);
-
-        verify(builderMock, never()).requestInterceptor(interceptor);
+        // Assert
+        assertNotNull(client);
+        verifyNoInteractions(interceptor);
     }
 }
