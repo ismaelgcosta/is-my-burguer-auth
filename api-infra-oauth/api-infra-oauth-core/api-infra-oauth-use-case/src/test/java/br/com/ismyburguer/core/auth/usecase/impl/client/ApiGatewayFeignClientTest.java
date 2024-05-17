@@ -34,23 +34,17 @@ public class ApiGatewayFeignClientTest {
 
     @BeforeAll
     public static void beforeAll() throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
-        feignMockedStatic = mockStatic(Feign.class);
+        mockStatic(Feign.class);
 
         SSLContext sslContext = SSLContextBuilder.create()
                 .loadTrustMaterial(TrustAllStrategy.INSTANCE)
                 .build();
 
-        sslContextBuilderMockedStatic = mockStatic(SSLContextBuilder.class);
+        mockStatic(SSLContextBuilder.class);
         contextBuilder = mock(SSLContextBuilder.class);
         when(SSLContextBuilder.create()).thenReturn(contextBuilder);
         when(contextBuilder.loadTrustMaterial(TrustAllStrategy.INSTANCE)).thenReturn(contextBuilder);
         when(contextBuilder.build()).thenReturn(sslContext);
-    }
-
-    @AfterAll
-    static void tearDown() {
-        feignMockedStatic.close();
-        sslContextBuilderMockedStatic.close();
     }
 
     @BeforeEach
