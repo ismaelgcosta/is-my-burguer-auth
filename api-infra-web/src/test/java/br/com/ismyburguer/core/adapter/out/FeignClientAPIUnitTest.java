@@ -3,9 +3,8 @@ package br.com.ismyburguer.core.adapter.out;
 import feign.Feign;
 import org.apache.hc.client5.http.ssl.TrustAllStrategy;
 import org.apache.hc.core5.ssl.SSLContextBuilder;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.mockito.MockedStatic;
 
 import javax.net.ssl.SSLContext;
 import java.security.KeyManagementException;
@@ -17,6 +16,8 @@ import static org.mockito.Mockito.*;
 
 public class FeignClientAPIUnitTest {
     private static SSLContextBuilder contextBuilder;
+    private static MockedStatic<Feign> feignMockedStatic;
+    private static MockedStatic<SSLContextBuilder> sslContextBuilderMockedStatic;
     private OAuth2ClientCredentialsFeignInterceptorAPI interceptor;
     private FeignClientAPI feignClientAPI;
     @BeforeEach
@@ -28,17 +29,23 @@ public class FeignClientAPIUnitTest {
 
     @BeforeAll
     public static void beforeAll() throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
-        mockStatic(Feign.class);
+        feignMockedStatic = mockStatic(Feign.class);
 
         SSLContext sslContext = SSLContextBuilder.create()
                 .loadTrustMaterial(TrustAllStrategy.INSTANCE)
                 .build();
 
-        mockStatic(SSLContextBuilder.class);
+        sslContextBuilderMockedStatic = mockStatic(SSLContextBuilder.class);
         contextBuilder = mock(SSLContextBuilder.class);
         when(SSLContextBuilder.create()).thenReturn(contextBuilder);
         when(contextBuilder.loadTrustMaterial(TrustAllStrategy.INSTANCE)).thenReturn(contextBuilder);
         when(contextBuilder.build()).thenReturn(sslContext);
+    }
+
+    @AfterAll
+    static void tearDown() {
+        feignMockedStatic.reset();
+        sslContextBuilderMockedStatic.reset();
     }
 
     @Test
