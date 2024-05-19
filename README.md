@@ -61,7 +61,6 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_TF_VAR_COGNITO_PASSWORD"></a> [TF\_VAR\_COGNITO\_PASSWORD](#input\_TF\_VAR\_COGNITO\_PASSWORD) | The master password for the COGNITO CLIENT. | `string` | n/a | yes |
 | <a name="input_TF_VAR_IMAGE_VERSION"></a> [TF\_VAR\_IMAGE\_VERSION](#input\_TF\_VAR\_IMAGE\_VERSION) | The number of the new image version. | `string` | n/a | yes |
 | <a name="input_TF_VAR_MONGODB_AUTH_PASSWORD"></a> [TF\_VAR\_MONGODB\_AUTH\_PASSWORD](#input\_TF\_VAR\_MONGODB\_AUTH\_PASSWORD) | The password for the mongodb database. | `string` | n/a | yes |
 | <a name="input_TF_VAR_MONGODB_AUTH_USERNAME"></a> [TF\_VAR\_MONGODB\_AUTH\_USERNAME](#input\_TF\_VAR\_MONGODB\_AUTH\_USERNAME) | The username for the mongodb database. | `string` | n/a | yes |
