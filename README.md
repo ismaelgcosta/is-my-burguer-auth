@@ -21,6 +21,7 @@ Ter o Java 20 instalado na sua máquina:
 [JDK 20](https://jdk.java.net/java-se-ri/20)
 
 # Terraform
+
 ## Requirements
 
 | Name | Version |
