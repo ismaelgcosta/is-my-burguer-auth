@@ -1,7 +1,7 @@
 services:
   is-my-burguer-auth:
     container_name: is-my-burguer-auth
-    image: docker.io/ismaelgcosta/is-my-burguer-auth:is-my-burguer-auth-2.2.0
+    image: docker.io/ismaelgcosta/is-my-burguer-auth:is-my-burguer-auth-2.2.1
     build:
         dockerfile: Dockerfile
     environment:
