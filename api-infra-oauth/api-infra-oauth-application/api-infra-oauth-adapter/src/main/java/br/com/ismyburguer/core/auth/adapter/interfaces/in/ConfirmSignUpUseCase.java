@@ -22,8 +22,7 @@ public class ConfirmSignUpUseCase {
     public void confirmarNovoUsuario(@NotBlank(message = "Informe o cpf") String cpf,
                                      @NotBlank(message = "Informe o password") String password,
                                      @NotBlank(message = "Informe o código de verificação") String code) {
-        String cpfFormatado = new CPFFormatter().isFormatted(cpf) ? cpf : new CPFFormatter().format(cpf);
-        Cliente cliente = consultarClienteUseCase.buscarPorCpf(new ConsultarClienteUseCase.ConsultaClientePorCpf(cpfFormatado));
+        Cliente cliente = consultarClienteUseCase.buscarPorCpf(new ConsultarClienteUseCase.ConsultaClientePorCpf(cpf));
         String username = cliente.getUsername().map(Cliente.Username::getUsername)
                 .orElseThrow(() -> new BusinessException("Não foi encontrado um Username associado ao Cliente informado"));
         oAuthConfirmSignUpUseCase.confirmSignUp(new ConfirmSignUp(
