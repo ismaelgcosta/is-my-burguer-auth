@@ -56,8 +56,9 @@ spring:
     name: is-my-burguer-auth
   data:
     mongodb:
-      uri: mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_HOST}/is-my-burguer-auth?retryWrites=true&w=majority&appName=is-my-burguer-mongodb
-
+      user: ${MONGO_USERNAME}
+      password: ${MONGO_PASSWORD}
+      uri: mongodb://localhost:27088/is-my-burguer-auth?authSource=admin
   security:
     oauth2:
       client:
