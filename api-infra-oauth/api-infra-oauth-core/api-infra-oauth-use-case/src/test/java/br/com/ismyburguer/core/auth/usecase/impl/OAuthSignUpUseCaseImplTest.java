@@ -1,10 +1,9 @@
 package br.com.ismyburguer.core.auth.usecase.impl;
-import br.com.ismyburguer.core.auth.adapter.interfaces.in.OAuthSignUpUseCase;
+
 import br.com.ismyburguer.core.auth.entity.SignUp;
 import br.com.ismyburguer.core.auth.gateway.out.LambdaOAuthSignUp;
 import br.com.ismyburguer.core.auth.gateway.out.request.SignUpRequest;
 import br.com.ismyburguer.core.auth.usecase.impl.client.ApiGatewayFeignClient;
-import br.com.ismyburguer.core.usecase.UseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,8 +14,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class OAuthSignUpUseCaseImplTest {

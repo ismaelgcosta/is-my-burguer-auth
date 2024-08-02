@@ -1,6 +1,5 @@
 package br.com.ismyburguer.core.auth.adapter.interfaces.in;
 
-import br.com.caelum.stella.format.CPFFormatter;
 import br.com.ismyburguer.cliente.adapter.interfaces.in.ConsultarClienteUseCase;
 import br.com.ismyburguer.cliente.entity.Cliente;
 import br.com.ismyburguer.core.auth.entity.ConfirmSignUp;

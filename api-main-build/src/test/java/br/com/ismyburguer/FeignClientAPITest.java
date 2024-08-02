@@ -1,13 +1,8 @@
 package br.com.ismyburguer;
 
 import br.com.ismyburguer.core.adapter.out.FeignClientAPI;
-import br.com.ismyburguer.core.auth.gateway.out.LambdaOAuthUserInfo;
-import feign.Feign;
 import feign.Headers;
 import feign.RequestLine;
-import org.apache.hc.core5.ssl.SSLContextBuilder;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,8 +17,6 @@ import java.util.List;
 import static br.com.ismyburguer.TestSecurityConfig.jwt;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.mockStatic;
 
 @ActiveProfiles("test")
 @SpringBootTest(classes = {Application.class, TestSecurityConfig.class})

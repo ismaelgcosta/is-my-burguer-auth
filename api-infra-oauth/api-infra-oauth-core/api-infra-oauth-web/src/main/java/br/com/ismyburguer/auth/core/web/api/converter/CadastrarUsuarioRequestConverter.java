@@ -1,9 +1,9 @@
 package br.com.ismyburguer.auth.core.web.api.converter;
 
+import br.com.ismyburguer.auth.core.web.api.request.UserSignUpRequest;
 import br.com.ismyburguer.cliente.entity.Cliente;
 import br.com.ismyburguer.core.adapter.Converter;
 import br.com.ismyburguer.core.adapter.in.WebConverter;
-import br.com.ismyburguer.auth.core.web.api.request.UserSignUpRequest;
 import jakarta.validation.ConstraintViolationException;
 
 import java.util.Optional;

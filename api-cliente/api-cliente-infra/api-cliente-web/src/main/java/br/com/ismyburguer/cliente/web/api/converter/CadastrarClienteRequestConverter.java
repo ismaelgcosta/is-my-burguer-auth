@@ -1,7 +1,7 @@
 package br.com.ismyburguer.cliente.web.api.converter;
 
-import br.com.ismyburguer.cliente.web.api.request.CriarClienteRequest;
 import br.com.ismyburguer.cliente.entity.Cliente;
+import br.com.ismyburguer.cliente.web.api.request.CriarClienteRequest;
 import br.com.ismyburguer.core.adapter.Converter;
 import br.com.ismyburguer.core.adapter.in.WebConverter;
 import jakarta.validation.ConstraintViolationException;

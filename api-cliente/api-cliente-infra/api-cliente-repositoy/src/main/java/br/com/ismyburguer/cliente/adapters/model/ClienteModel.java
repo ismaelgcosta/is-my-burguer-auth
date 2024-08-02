@@ -7,8 +7,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -33,12 +31,9 @@ public class ClienteModel {
 
     private String sobrenome;
 
-    @Indexed(unique = true)
     @Email(message = "Informe um e-mail válido")
     private String email;
 
-    @Indexed(unique = true)
-    @CPF(message = "Informe um CPF válido")
     private String cpf;
 
     private boolean ativo = true;

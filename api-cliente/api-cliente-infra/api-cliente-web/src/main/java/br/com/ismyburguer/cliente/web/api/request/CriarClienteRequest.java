@@ -3,7 +3,6 @@ package br.com.ismyburguer.cliente.web.api.request;
 import br.com.ismyburguer.core.validation.Validation;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.util.Base64Utils;
 
 import java.util.Optional;
 

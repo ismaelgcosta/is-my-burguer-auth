@@ -2,8 +2,6 @@ package br.com.ismyburguer.core.auth.gateway.out;
 
 import feign.Feign;
 import feign.RequestTemplate;
-import org.apache.hc.client5.http.ssl.TrustAllStrategy;
-import org.apache.hc.core5.ssl.SSLContextBuilder;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,10 +15,6 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 
-import javax.net.ssl.SSLContext;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
 import static org.mockito.Mockito.*;

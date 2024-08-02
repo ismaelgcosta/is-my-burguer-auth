@@ -2,7 +2,7 @@ package br.com.ismyburguer.cliente.entity;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 class ClienteTest {
 
     @Test

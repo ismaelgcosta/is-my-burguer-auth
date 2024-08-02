@@ -1,16 +1,15 @@
-package br.com.ismyburguer.cliente.web.api.converter;
+package br.com.ismyburguer.cliente.adapters.converter;
 
+import br.com.ismyburguer.cliente.adapters.model.SolicitacaoExclusaoModel;
 import br.com.ismyburguer.cliente.entity.SolicitacaoExclusao;
-import br.com.ismyburguer.cliente.web.api.response.SolicitacaoExclusaoResponse;
 import br.com.ismyburguer.core.adapter.Converter;
-import br.com.ismyburguer.core.adapter.in.WebConverter;
+import br.com.ismyburguer.core.adapter.out.PersistenceConverter;
 
-@WebConverter
-public class SolicitarExclusaoResponseConverter implements Converter<SolicitacaoExclusao, SolicitacaoExclusaoResponse> {
-
+@PersistenceConverter
+public class SolicitacaoExclusaoToSolicitacaoExclusaoModelConverter implements Converter<SolicitacaoExclusao, SolicitacaoExclusaoModel> {
     @Override
-    public SolicitacaoExclusaoResponse convert(SolicitacaoExclusao source) {
-        return new SolicitacaoExclusaoResponse(
+    public SolicitacaoExclusaoModel convert(SolicitacaoExclusao source) {
+        return new SolicitacaoExclusaoModel(
                 source.getTelefone().getTelefone(),
                 source.getNome().getNome(),
                 source.getCpf().getNumero(),
@@ -23,5 +22,4 @@ public class SolicitarExclusaoResponseConverter implements Converter<Solicitacao
                 source.getEndereco().getCep()
         );
     }
-
 }
