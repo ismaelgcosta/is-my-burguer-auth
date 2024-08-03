@@ -23,39 +23,39 @@ class SolicitacaoExclusaoResponseTest {
     void getTelefone_ReturnsMaskedTelefone() {
         // Arrange
         SolicitacaoExclusaoResponse response = new SolicitacaoExclusaoResponse();
-        response.setTelefone("12-3456789");
+        response.setTelefone("12 3456-8789");
 
         // Act
         String maskedTelefone = response.getTelefone();
 
         // Assert
-        assertEquals("12-***6789", maskedTelefone);
+        assertEquals("12*****-8789", maskedTelefone);
     }
 
     @Test
     void getCep_ReturnsMaskedCep() {
         // Arrange
         SolicitacaoExclusaoResponse response = new SolicitacaoExclusaoResponse();
-        response.setCep("12-345678");
+        response.setCep("12345-678");
 
         // Act
         String maskedCep = response.getCep();
 
         // Assert
-        assertEquals("12-***678", maskedCep);
+        assertEquals("12***-678", maskedCep);
     }
 
     @Test
     void getCpf_WithInvalidCpfFormat_ReturnsOriginalCpf() {
         // Arrange
         SolicitacaoExclusaoResponse response = new SolicitacaoExclusaoResponse();
-        response.setCpf("12345678900"); // invalid format
+        response.setCpf("123.456.789-00"); // invalid format
 
         // Act
         String maskedCpf = response.getCpf();
 
         // Assert
-        assertEquals("12345678900", maskedCpf);
+        assertEquals("123.***.**9-00", maskedCpf);
     }
 
     @Test

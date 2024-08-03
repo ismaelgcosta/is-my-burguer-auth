@@ -54,14 +54,14 @@ public class SolicitacaoExclusaoResponse {
     public String getTelefone() {
         int atIndex = telefone.indexOf('-');
         String regex = "(.{2})(.*)(-.*)";
-        String repeatedAsterisks = "*".repeat(atIndex - 2);
+        String repeatedAsterisks = "*".repeat(atIndex < 0 ? 2 : atIndex - 2);
         return telefone.replaceAll(regex, "$1" + repeatedAsterisks + "$3");
     }
 
     public String getCep() {
         int atIndex = cep.indexOf('-');
         String regex = "(.{2})(.*)(-.*)";
-        String repeatedAsterisks = "*".repeat(atIndex - 2);
+        String repeatedAsterisks = "*".repeat(atIndex < 0 ? 2 : atIndex - 2);
         return cep.replaceAll(regex, "$1" + repeatedAsterisks + "$3");
     }
 }
