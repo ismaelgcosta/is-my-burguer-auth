@@ -1,20 +1,18 @@
 package br.com.ismyburguer.auth.core.web.api;
+
 import br.com.ismyburguer.auth.core.web.api.converter.BuscarClienteAuthConverter;
 import br.com.ismyburguer.auth.core.web.api.converter.CadastrarUsuarioRequestConverter;
 import br.com.ismyburguer.auth.core.web.api.request.UserSignUpRequest;
+import br.com.ismyburguer.cliente.entity.Cliente;
 import br.com.ismyburguer.core.auth.adapter.interfaces.in.UserSignUpUseCase;
 import br.com.ismyburguer.core.auth.entity.User;
-import br.com.ismyburguer.cliente.entity.Cliente;
 import jakarta.validation.ConstraintViolationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

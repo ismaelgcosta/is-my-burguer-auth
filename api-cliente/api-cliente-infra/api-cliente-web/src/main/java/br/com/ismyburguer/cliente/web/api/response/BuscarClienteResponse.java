@@ -19,10 +19,7 @@ public class BuscarClienteResponse {
     private String username;
 
     public String getCpf() {
-        int lastDigitsIndex = cpf.length() - 6;
-        String regex = "(\\+)(\\d+)(\\d{4})";
-        String repeatedAsterisks = "*".repeat(Math.max(0, lastDigitsIndex));
-        return cpf.replaceAll("(\\d{3})(\\d{5})(\\d{3})", "$1*****$3");
+        return cpf.replaceAll("(.{3})(.*)(.{4})", "$1.***.**$3");
     }
 
     public String getEmail() {

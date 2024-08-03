@@ -42,7 +42,7 @@ public class UserInfoAPITest {
     public void setUp() {
         userInfo = EnhancedRandomBuilder.aNewEnhancedRandom().nextObject(UserInfo.class);
         userInfo.setEmail("email@email.com");
-        userInfo.setCpf("11111111111");
+        userInfo.setCpf("111.111.111-11");
 
         when(securityContext.getAuthentication()).thenReturn(authentication);
         when(authentication.getCredentials()).thenReturn(jwt);
@@ -62,7 +62,7 @@ public class UserInfoAPITest {
         // Assert
         assertNotNull(result);
         assertEquals(userInfo.getUsername(), result.getUsername());
-        assertEquals("111*****111", result.getCpf());
+        assertEquals("111.***.**1-11", result.getCpf());
         assertEquals(userInfo.getName(), result.getName());
         assertEquals("em***@email.com", result.getEmail());
 

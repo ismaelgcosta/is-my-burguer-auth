@@ -1,22 +1,19 @@
 package br.com.ismyburguer.core.auth.adapter.interfaces.in;
+
 import br.com.caelum.stella.format.CPFFormatter;
 import br.com.ismyburguer.cliente.adapter.interfaces.in.ConsultarClienteUseCase;
 import br.com.ismyburguer.cliente.entity.Cliente;
-import br.com.ismyburguer.core.auth.entity.ConfirmSignUp;
 import br.com.ismyburguer.core.exception.BusinessException;
-import br.com.ismyburguer.core.usecase.UseCase;
 import io.github.benas.randombeans.EnhancedRandomBuilder;
-import jakarta.validation.constraints.NotBlank;
-import org.apache.commons.lang3.StringUtils;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.*;
 
 @MockitoSettings(strictness = Strictness.LENIENT)
 public class ConfirmSignUpUseCaseTest {

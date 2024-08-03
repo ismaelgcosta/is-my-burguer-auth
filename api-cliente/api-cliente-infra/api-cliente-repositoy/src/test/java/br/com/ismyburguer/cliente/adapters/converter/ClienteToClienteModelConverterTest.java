@@ -1,10 +1,10 @@
 package br.com.ismyburguer.cliente.adapters.converter;
+
 import br.com.ismyburguer.cliente.adapters.model.ClienteModel;
 import br.com.ismyburguer.cliente.entity.Cliente;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -3,7 +3,6 @@ package br.com.ismyburguer.core.auth.gateway.out;
 import br.com.ismyburguer.core.adapter.out.OAuth2ClientCredentialsFeignInterceptorAPI;
 import br.com.ismyburguer.core.auth.entity.ClientCredentialsLogin;
 import feign.Feign;
-import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
