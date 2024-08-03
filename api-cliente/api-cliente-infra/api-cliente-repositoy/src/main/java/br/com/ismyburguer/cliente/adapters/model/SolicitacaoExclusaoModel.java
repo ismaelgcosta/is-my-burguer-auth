@@ -19,6 +19,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "solicitacaoExclusaoId")
 @AllArgsConstructor
+@SuppressWarnings("common-java:DuplicatedBlocks")
+@Builder
 public class SolicitacaoExclusaoModel {
 
     @Id
@@ -55,16 +57,4 @@ public class SolicitacaoExclusaoModel {
     @NotBlank
     private String cep;
 
-    public SolicitacaoExclusaoModel(String telefone, String nome, String cpf, String rua, String numero, String complemento, String bairro, String cidade, Estado estado, String cep) {
-        this.telefone = telefone;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.rua = rua;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.estado = estado;
-        this.cep = cep;
-    }
 }

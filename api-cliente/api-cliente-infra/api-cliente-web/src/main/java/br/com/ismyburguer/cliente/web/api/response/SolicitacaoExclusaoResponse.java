@@ -14,6 +14,7 @@ import org.hibernate.validator.constraints.br.CPF;
 @AllArgsConstructor
 @Getter
 @Setter
+@SuppressWarnings("common-java:DuplicatedBlocks")
 public class SolicitacaoExclusaoResponse {
 
     private String telefone;

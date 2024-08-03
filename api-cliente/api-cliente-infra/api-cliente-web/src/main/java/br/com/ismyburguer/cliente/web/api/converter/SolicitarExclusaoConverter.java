@@ -1,6 +1,7 @@
 package br.com.ismyburguer.cliente.web.api.converter;
 
 import br.com.ismyburguer.cliente.entity.Cliente;
+import br.com.ismyburguer.cliente.entity.Endereco;
 import br.com.ismyburguer.cliente.entity.SolicitacaoExclusao;
 import br.com.ismyburguer.cliente.web.api.request.SolicitacaoExclusaoRequest;
 import br.com.ismyburguer.core.adapter.Converter;
@@ -23,7 +24,7 @@ public class SolicitarExclusaoConverter implements Converter<SolicitacaoExclusao
         return new SolicitacaoExclusao(
                 new SolicitacaoExclusao.Nome(source.getNome()),
                 new SolicitacaoExclusao.Telefone(source.getTelefone()),
-                new SolicitacaoExclusao.Endereco(
+                new Endereco(
                         source.getRua(),
                         source.getNumero(),
                         source.getComplemento(),

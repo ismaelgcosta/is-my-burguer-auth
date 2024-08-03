@@ -12,7 +12,7 @@ public class SolicitarExclusaoResponseConverter implements Converter<Solicitacao
     public SolicitacaoExclusaoResponse convert(SolicitacaoExclusao source) {
         return new SolicitacaoExclusaoResponse(
                 source.getTelefone().getTelefone(),
-                source.getNome().getNome(),
+                source.getNome().getDescricao(),
                 source.getCpf().getNumero(),
                 source.getEndereco().getRua(),
                 source.getEndereco().getNumero(),

@@ -1,27 +1,15 @@
-package br.com.ismyburguer.cliente.web.api.request;
+package br.com.ismyburguer.cliente.entity;
 
 import br.com.caelum.stella.type.Estado;
-import br.com.ismyburguer.core.validation.Validation;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.br.CPF;
 
-@NoArgsConstructor
 @Getter
-@Setter
-@SuppressWarnings("common-java:DuplicatedBlocks")
-public class SolicitacaoExclusaoRequest implements Validation {
-
-    private String telefone;
-
-    private String nome;
-
-    @CPF(message = "Informe um CPF válido")
-    private String cpf;
+@AllArgsConstructor
+public class Endereco {
 
     @NotBlank
     private String rua;

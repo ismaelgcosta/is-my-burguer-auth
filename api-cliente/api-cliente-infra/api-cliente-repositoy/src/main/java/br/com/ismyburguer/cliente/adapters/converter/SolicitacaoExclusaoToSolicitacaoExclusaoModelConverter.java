@@ -9,17 +9,18 @@ import br.com.ismyburguer.core.adapter.out.PersistenceConverter;
 public class SolicitacaoExclusaoToSolicitacaoExclusaoModelConverter implements Converter<SolicitacaoExclusao, SolicitacaoExclusaoModel> {
     @Override
     public SolicitacaoExclusaoModel convert(SolicitacaoExclusao source) {
-        return new SolicitacaoExclusaoModel(
-                source.getTelefone().getTelefone(),
-                source.getNome().getNome(),
-                source.getCpf().getNumero(),
-                source.getEndereco().getRua(),
-                source.getEndereco().getNumero(),
-                source.getEndereco().getComplemento(),
-                source.getEndereco().getBairro(),
-                source.getEndereco().getCidade(),
-                source.getEndereco().getEstado(),
-                source.getEndereco().getCep()
-        );
+        return SolicitacaoExclusaoModel.builder()
+                .cpf(source.getCpf().getNumero())
+                .telefone(source.getTelefone().getTelefone())
+                .nome(source.getNome().getDescricao())
+                .numero(source.getCpf().getNumero())
+                .rua(source.getEndereco().getRua())
+                .numero(source.getEndereco().getNumero())
+                .complemento(source.getEndereco().getComplemento())
+                .bairro(source.getEndereco().getBairro())
+                .cidade(source.getEndereco().getCidade())
+                .estado(source.getEndereco().getEstado())
+                .cep(source.getEndereco().getCep())
+                .build();
     }
 }
