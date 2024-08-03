@@ -27,7 +27,7 @@ class SolicitarExclusaoResponseConverterTest {
                         Estado.SP,
                         "12345-678"
                 ),
-                new Cliente.CPF("12345678900")
+                new Cliente.CPF("123.456.789-09")
         );
 
         SolicitarExclusaoResponseConverter converter = new SolicitarExclusaoResponseConverter();
@@ -39,13 +39,13 @@ class SolicitarExclusaoResponseConverterTest {
         assertNotNull(result);
         assertEquals("Nome Teste", result.getNome());
         assertEquals("123456789", result.getTelefone());
-        assertEquals("12345678900", result.getCpf());
+        assertEquals("123.***.**9-09", result.getCpf());
         assertEquals("Rua Teste", result.getRua());
         assertEquals("123", result.getNumero());
         assertEquals("Complemento Teste", result.getComplemento());
         assertEquals("Bairro Teste", result.getBairro());
         assertEquals("Cidade Teste", result.getCidade());
         assertEquals(Estado.SP, result.getEstado());
-        assertEquals("12345-678", result.getCep());
+        assertEquals("12***-678", result.getCep());
     }
 }

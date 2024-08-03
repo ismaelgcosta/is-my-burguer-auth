@@ -55,7 +55,7 @@ class SolicitacaoExclusaoResponseTest {
         String maskedCpf = response.getCpf();
 
         // Assert
-        assertEquals("123.***.**9-00", maskedCpf);
+        assertEquals("123.***.**9-00git", maskedCpf);
     }
 
     @Test
