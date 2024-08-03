@@ -47,10 +47,8 @@ public class UserSignInUseCase {
                 new Cliente.Username(user.getUsername())
         );
 
-        String cpfFormatado = new CPFFormatter().isFormatted(user.getCpf()) ? user.getCpf() : new CPFFormatter().format(user.getCpf());
-
-        if(consultarClienteUseCase.existsByCpf(cpfFormatado)) {
-            Cliente cliente = consultarClienteUseCase.buscarPorCpf(new ConsultarClienteUseCase.ConsultaClientePorCpf(cpfFormatado));
+        if(consultarClienteUseCase.existsByCpf(user.getCpf())) {
+            Cliente cliente = consultarClienteUseCase.buscarPorCpf(new ConsultarClienteUseCase.ConsultaClientePorCpf(user.getCpf()));
             nome.setSobrenome(cliente.getNome().getSobrenome());
             alterarClienteUseCase.alterar(cliente.getClienteId().getClienteId().toString(), novoCliente);
         } else {
