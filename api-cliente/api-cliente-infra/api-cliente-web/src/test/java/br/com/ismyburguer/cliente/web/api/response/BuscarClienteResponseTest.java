@@ -9,13 +9,13 @@ class BuscarClienteResponseTest {
     void testGetCpf() {
         // Arrange
         BuscarClienteResponse response = new BuscarClienteResponse();
-        response.setCpf("12345678909");
+        response.setCpf("123.456.789-09");
 
         // Act
         String result = response.getCpf();
 
         // Assert
-        assertEquals("123*****909", result);
+        assertEquals("123.***.**9-09", result);
     }
 
     @Test
