@@ -52,7 +52,7 @@ public class SolicitacaoExclusaoResponse {
     }
 
     public String getTelefone() {
-        int atIndex = telefone.indexOf('-');
+        int atIndex = telefone.indexOf('-', 3);
         String regex = "(.{2})(.*)(-.*)";
         String repeatedAsterisks = "*".repeat(atIndex < 0 ? 2 : atIndex - 2);
         return telefone.replaceAll(regex, "$1" + repeatedAsterisks + "$3");

@@ -107,7 +107,6 @@ public class Cliente implements Validation {
     @AllArgsConstructor
     public static class CPF {
 
-        @org.hibernate.validator.constraints.br.CPF(message = "Informe um CPF válido")
         private String numero;
 
     }
