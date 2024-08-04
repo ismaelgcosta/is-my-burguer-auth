@@ -26,7 +26,7 @@ public class AlterarClienteRepositoryImpl implements AlterarClienteRepository {
             throw new EntityNotFoundException("Cliente não foi encontrado");
         }
 
-        ClienteModel clienteModel = clienteRepository.findById(uuid).get();
+        ClienteModel clienteModel = clienteRepository.findById(uuid).orElseThrow(() -> new EntityNotFoundException("Cliente não foi encontrado"));
         clienteModel.setNome(cliente.getNome().getNome());
         clienteModel.setSobrenome(cliente.getNome().getSobrenome());
         clienteModel.setClienteId(uuid);
@@ -34,6 +34,7 @@ public class AlterarClienteRepositoryImpl implements AlterarClienteRepository {
 
         if(username.isPresent() && username.get().getUsername().equalsIgnoreCase("removed")) {
             clienteModel.setUsername(null);
+            cliente.getCpf().map(Cliente.CPF::getNumero).ifPresent(clienteModel::setCpf);
         }
 
         if(cliente.getEmail() != null && cliente.getEmail().getEndereco() != null) {
