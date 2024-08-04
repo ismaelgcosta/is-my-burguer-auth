@@ -34,6 +34,7 @@ public class AlterarClienteRepositoryImpl implements AlterarClienteRepository {
 
         if(username.isPresent() && username.get().getUsername().equalsIgnoreCase("removed")) {
             clienteModel.setUsername(null);
+            cliente.getCpf().map(Cliente.CPF::getNumero).ifPresent(clienteModel::setCpf);
         }
 
         if(cliente.getEmail() != null && cliente.getEmail().getEndereco() != null) {
