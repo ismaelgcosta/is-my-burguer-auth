@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.Length;
 
 @Getter
 @AllArgsConstructor
+@SuppressWarnings("common-java:DuplicatedBlocks")
 public class Endereco {
 
     @NotBlank
