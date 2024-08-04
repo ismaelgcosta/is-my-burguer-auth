@@ -47,8 +47,8 @@ public class UserSignInUseCase {
                 new Cliente.Username(user.getUsername())
         );
 
-        if(consultarClienteUseCase.existsByCpf(user.getCpf())) {
-            Cliente cliente = consultarClienteUseCase.buscarPorCpf(new ConsultarClienteUseCase.ConsultaClientePorCpf(user.getCpf()));
+        if(consultarClienteUseCase.existsByCpf(username)) {
+            Cliente cliente = consultarClienteUseCase.buscarPorCpf(new ConsultarClienteUseCase.ConsultaClientePorCpf(username));
             nome.setSobrenome(cliente.getNome().getSobrenome());
             alterarClienteUseCase.alterar(cliente.getClienteId().getClienteId().toString(), novoCliente);
         } else {
