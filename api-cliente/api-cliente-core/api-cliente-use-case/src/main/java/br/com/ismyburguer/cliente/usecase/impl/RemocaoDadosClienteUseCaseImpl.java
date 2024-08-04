@@ -27,7 +27,7 @@ public class RemocaoDadosClienteUseCaseImpl implements RemocaoDadosClienteUseCas
     public void remover(ConsultarClienteUseCase.ConsultaClientePorCpf query) {
         Cliente cliente = consultarClienteUseCase.buscarPorCpf(query);
         cliente.setCpf(new Cliente.CPF(StringUtils.substring(UUID.randomUUID().toString(), 0, 11)));
-        cliente.setEmail(new Cliente.Email(StringUtils.substring(UUID.randomUUID().toString(), 0, 11)));
+        cliente.setEmail(new Cliente.Email(StringUtils.substring(UUID.randomUUID().toString() + "@ismyburguer.com", 0, 11)));
         cliente.setNome(new Cliente.Nome(new Faker().artist().name()));
 
         cliente.getUsername()

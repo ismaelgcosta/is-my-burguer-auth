@@ -23,7 +23,7 @@ class SolicitacaoExclusaoResponseTest {
     void getTelefone_ReturnsMaskedTelefone() {
         // Arrange
         SolicitacaoExclusaoResponse response = new SolicitacaoExclusaoResponse();
-        response.setTelefone("12 3456-8789");
+        response.setTelefone("12-3456-8789");
 
         // Act
         String maskedTelefone = response.getTelefone();
