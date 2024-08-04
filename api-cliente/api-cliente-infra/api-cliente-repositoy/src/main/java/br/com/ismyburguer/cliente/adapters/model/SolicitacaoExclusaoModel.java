@@ -19,8 +19,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "solicitacaoExclusaoId")
 @AllArgsConstructor
-@SuppressWarnings("common-java:DuplicatedBlocks")
 @Builder
+@SuppressWarnings("common-java:DuplicatedBlocks")
 public class SolicitacaoExclusaoModel {
 
     @Id
